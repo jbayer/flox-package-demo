@@ -105,6 +105,10 @@ The consumer environment's manifest is just:
 ```toml
 [install]
 datecli.pkg-path = "jbayer/datecli"
+
+[options]
+# Limited to the systems the package has been published for so far.
+systems = ["aarch64-darwin", "aarch64-linux"]
 ```
 
 Version constraints work the same as catalog packages, e.g.
