@@ -1,0 +1,29 @@
+name: Publish datecli
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      # FloxHub auth token, read by the flox CLI from the environment.
+      FLOX_FLOXHUB_TOKEN: ${{ secrets.FLOX_FLOXHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Flox
+        uses: flox/install-flox-action@v2
+
+      - name: Build datecli
+        run: flox activate -d datecli -- flox build -d datecli datecli
+
+      - name: Publish datecli
+        # The target org comes from FLOX_PUBLISH_ORG, set in the build
+        # environment's [vars] section.
+        run: |
+          flox activate -d datecli -- \
+            bash -c 'flox publish -d datecli -o "$FLOX_PUBLISH_ORG" datecli'

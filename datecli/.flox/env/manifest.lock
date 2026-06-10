@@ -1,0 +1,285 @@
+{
+  "lockfile-version": 1,
+  "manifest": {
+    "schema-version": "1.12.0",
+    "install": {
+      "go": {
+        "pkg-path": "go"
+      },
+      "tzdata": {
+        "pkg-path": "tzdata"
+      }
+    },
+    "vars": {
+      "FLOX_PUBLISH_ORG": "jbayer"
+    },
+    "options": {
+      "systems": [
+        "aarch64-darwin",
+        "aarch64-linux",
+        "x86_64-darwin",
+        "x86_64-linux"
+      ]
+    },
+    "build": {
+      "datecli": {
+        "command": "  mkdir -p $out/bin\n  CGO_ENABLED=0 go build -trimpath -ldflags=\"-s -w\" \\\n    -o $out/bin/datecli ./cmd/datecli\n",
+        "runtime-packages": [
+          "tzdata"
+        ],
+        "version": "0.1.0",
+        "description": "Example CLI that prints the current date and time"
+      }
+    }
+  },
+  "packages": [
+    {
+      "attr_path": "go",
+      "broken": false,
+      "derivation": "/nix/store/3wcz439vgpp14pn7jmfnhj1gfjz16pfm-go-1.26.3.drv",
+      "description": "Go Programming language",
+      "install_id": "go",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "go-1.26.3",
+      "pname": "go",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T03:14:20.166513Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.26.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/7ycp8j45iay38g9mjaxmy4jhwdsrb47y-go-1.26.3"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "go",
+      "broken": false,
+      "derivation": "/nix/store/350ianh8b5f8pz5rb79f6hbjkzyglzn5-go-1.26.3.drv",
+      "description": "Go Programming language",
+      "install_id": "go",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "go-1.26.3",
+      "pname": "go",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T03:46:53.318519Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.26.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/jkcwcbwvhgzmxg59798z4clmj4bfv42i-go-1.26.3"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "go",
+      "broken": false,
+      "derivation": "/nix/store/7injq3dc4gh49fwhgh403kf7n1y6f9ci-go-1.26.3.drv",
+      "description": "Go Programming language",
+      "install_id": "go",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "go-1.26.3",
+      "pname": "go",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:17:44.930875Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.26.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/3f2jzvxmhhlarjqxy1p7i9r5l34siz29-go-1.26.3"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "go",
+      "broken": false,
+      "derivation": "/nix/store/zalhv7i71i9c3v7vm61psf2arglbzjfg-go-1.26.3.drv",
+      "description": "Go Programming language",
+      "install_id": "go",
+      "license": "BSD-3-Clause",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "go-1.26.3",
+      "pname": "go",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:53:17.136238Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "1.26.3",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/33fw5m31lfcnk4ff2f0df7j2bxnh8lgk-go-1.26.3"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tzdata",
+      "broken": false,
+      "derivation": "/nix/store/pnpnsx9n6kbz9mrghx73632lm1jspqn9-tzdata-2026b.drv",
+      "description": "Database of current and historical time zones",
+      "install_id": "tzdata",
+      "license": "[ BSD-3-Clause, Public Domain ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "tzdata-2026b",
+      "pname": "tzdata",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T03:17:08.401739Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2026b",
+      "outputs_to_install": [
+        "bin",
+        "man"
+      ],
+      "outputs": {
+        "bin": "/nix/store/rgd69p9klgi6n0rq82sv84z7hqs1cb7v-tzdata-2026b-bin",
+        "dev": "/nix/store/md9ih1m8pz3549z4aa7pzl8w02jz2s6i-tzdata-2026b-dev",
+        "man": "/nix/store/1n7ghfdgfzn3yy3x65yzpipdvs9px4l0-tzdata-2026b-man",
+        "out": "/nix/store/klc90kbqghhp57qazsqh0mkjpzvj7gb7-tzdata-2026b"
+      },
+      "system": "aarch64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tzdata",
+      "broken": false,
+      "derivation": "/nix/store/xrh7y4xw0h6ifjvib7f4k5pzljvrl6pi-tzdata-2026b.drv",
+      "description": "Database of current and historical time zones",
+      "install_id": "tzdata",
+      "license": "[ BSD-3-Clause, Public Domain ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "tzdata-2026b",
+      "pname": "tzdata",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T03:50:25.791456Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2026b",
+      "outputs_to_install": [
+        "bin",
+        "man"
+      ],
+      "outputs": {
+        "bin": "/nix/store/vq7s2l01gjpn5wrmzgln84ys5w806dns-tzdata-2026b-bin",
+        "dev": "/nix/store/98kl6xz2ba7xhi6px2qbxijpmnpj301x-tzdata-2026b-dev",
+        "man": "/nix/store/0v43j45y80fy87mh4598b9x6mafhgk42-tzdata-2026b-man",
+        "out": "/nix/store/53zvl5z0iwjfcgl89dgcnyv9nbiw97yd-tzdata-2026b"
+      },
+      "system": "aarch64-linux",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tzdata",
+      "broken": false,
+      "derivation": "/nix/store/id0qc9fav13w8b7yjrnq36d1fgb7y7ai-tzdata-2026b.drv",
+      "description": "Database of current and historical time zones",
+      "install_id": "tzdata",
+      "license": "[ BSD-3-Clause, Public Domain ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "tzdata-2026b",
+      "pname": "tzdata",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:20:23.342196Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2026b",
+      "outputs_to_install": [
+        "bin",
+        "man"
+      ],
+      "outputs": {
+        "bin": "/nix/store/6xxlkzliadvf43953cqkb5s6p5ssz4ff-tzdata-2026b-bin",
+        "dev": "/nix/store/bafxmhdiimdhlyzhdw7d81vhzzn6ljp4-tzdata-2026b-dev",
+        "man": "/nix/store/5rk6sgg43zhpcbmbp2i74kaw36qyz2g8-tzdata-2026b-man",
+        "out": "/nix/store/fnaxbnpnmw76zd4jyxfb32cxbig3zggi-tzdata-2026b"
+      },
+      "system": "x86_64-darwin",
+      "group": "toplevel",
+      "priority": 5
+    },
+    {
+      "attr_path": "tzdata",
+      "broken": false,
+      "derivation": "/nix/store/gl81pbs21zxi58f06hrna9wi3fpkwjv6-tzdata-2026b.drv",
+      "description": "Database of current and historical time zones",
+      "install_id": "tzdata",
+      "license": "[ BSD-3-Clause, Public Domain ]",
+      "locked_url": "https://github.com/flox/nixpkgs?rev=a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "name": "tzdata-2026b",
+      "pname": "tzdata",
+      "rev": "a799d3e3886da994fa307f817a6bc705ae538eeb",
+      "rev_count": 1011622,
+      "rev_date": "2026-06-06T12:30:50Z",
+      "scrape_date": "2026-06-08T04:57:06.990716Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "unfree": false,
+      "version": "2026b",
+      "outputs_to_install": [
+        "bin",
+        "man"
+      ],
+      "outputs": {
+        "bin": "/nix/store/5lhrk5040bb1ilrwl63jp95lhnkl2a66-tzdata-2026b-bin",
+        "dev": "/nix/store/5s4dxnmq18r08qml03cvq7jbcndhfyf1-tzdata-2026b-dev",
+        "man": "/nix/store/hiy8cp0c280363fidzskv6q9hfwlgrf3-tzdata-2026b-man",
+        "out": "/nix/store/v2hsfkf03b3l79rhcxw4nq7w79kr3qkw-tzdata-2026b"
+      },
+      "system": "x86_64-linux",
+      "group": "toplevel",
+      "priority": 5
+    }
+  ]
+}

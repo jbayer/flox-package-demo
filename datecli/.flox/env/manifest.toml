@@ -1,0 +1,39 @@
+schema-version = "1.12.0"
+
+## Build environment for the `datecli` package.
+##
+## This environment contains the Go toolchain needed to build the CLI.
+## The package itself is defined in the [build.datecli] section below
+## and is published to the FloxHub org named in $FLOX_PUBLISH_ORG.
+
+[install]
+go.pkg-path = "go"
+tzdata.pkg-path = "tzdata"
+
+[vars]
+# The FloxHub org that `flox publish` targets. Referenced by the publish
+# step locally and in CI:  flox publish -o "$FLOX_PUBLISH_ORG" datecli
+FLOX_PUBLISH_ORG = "jbayer"
+
+## Manifest build: a short bash script that runs inside the activated
+## environment. Anything copied into $out becomes the package.
+[build.datecli]
+description = "Example CLI that prints the current date and time"
+version = "0.1.0"
+command = '''
+  mkdir -p $out/bin
+  CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" \
+    -o $out/bin/datecli ./cmd/datecli
+'''
+# The compiled binary is static except for timezone lookups: Go on Nix
+# resolves zoneinfo from the tzdata package, so that is the only runtime
+# dependency. The Go toolchain itself stays build-time only.
+runtime-packages = ["tzdata"]
+
+[options]
+systems = [
+  "aarch64-darwin",
+  "aarch64-linux",
+  "x86_64-darwin",
+  "x86_64-linux",
+]
