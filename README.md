@@ -23,7 +23,8 @@ git alongside the code it supports.
 ## Prerequisites
 
 - [Flox](https://flox.dev/get) installed
-- A FloxHub account: `flox auth login`
+- An authenticated FloxHub account: `flox auth login`. You can verify the
+  logged in status with `flox auth status`.
 - This repo cloned with a configured remote (`flox publish` validates that
   the current commit is pushed)
 
