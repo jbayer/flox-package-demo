@@ -114,6 +114,46 @@ systems = ["aarch64-darwin", "aarch64-linux"]
 Version constraints work the same as catalog packages, e.g.
 `datecli.version = "^0.1"`.
 
+### Share the consumer environment on FloxHub
+
+The consumer environment itself can be pushed to FloxHub so others can use
+it without cloning this repo:
+
+```bash
+cd consumer
+flox push
+```
+
+This uploads the environment *definition* (the manifest and lock, not
+binaries) under the name in `.flox/env.json` — here `jbayer/datecli` — and
+links the local copy to it. Note that the environment `jbayer/datecli` and
+the package `jbayer/datecli` are separate resources: the environment is a
+manifest that happens to install the package. After pushing, commit the
+updated `.flox/env.json` and `.flox/env.lock`, which pin the environment to
+a specific FloxHub generation.
+
+### Use the environment with nothing but Flox installed
+
+On any machine that has Flox but no checkout of this repo and no local
+`.flox` directory, activate the environment straight from FloxHub by
+passing its FloxHub path (`<owner>/<name>`) to `-r`:
+
+```bash
+flox activate -r jbayer/datecli -- datecli
+# Current date and time: Tue, 09 Jun 2026 17:57:24 PDT
+```
+
+Or enter it as an interactive shell:
+
+```bash
+flox activate -r jbayer/datecli
+```
+
+Flox fetches the environment definition from FloxHub and realizes its
+packages locally — no git clone required. This is the same mechanism a CI
+job or a teammate would use to get the exact toolchain without knowing
+anything about how it was built.
+
 ## 4. Publishing from CI
 
 [.github/workflows/publish.yml](.github/workflows/publish.yml) publishes
