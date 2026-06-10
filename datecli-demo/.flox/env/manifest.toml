@@ -1,0 +1,33 @@
+schema-version = "1.12.0"
+
+## Runtime environment that consumes the published package.
+##
+## This environment contains no build tools and no source code — just the
+## datecli binary installed from the FloxHub catalog, plus gum for the
+## activation banner below.
+
+[install]
+datecli.pkg-path = "jbayer/datecli"
+datecli.pkg-group = "datecli"
+gum.pkg-path = "gum"
+
+## Print usage instructions when the environment is activated.
+[profile]
+common = '''
+  gum style \
+    --border rounded --border-foreground 212 \
+    --margin "1 2" --padding "1 3" --align left \
+    "datecli demo environment" \
+    "" \
+    "Run 'datecli' to print the current date and time." \
+    "" \
+    "Learn more: https://github.com/jbayer/flox-package-demo"
+'''
+
+[options]
+# The published package currently has variants for these systems; publish
+# from other hosts (or CI runners) to add more.
+systems = [
+  "aarch64-darwin",
+  "aarch64-linux",
+]

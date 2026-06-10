@@ -11,10 +11,10 @@ and time.
 ## Repo layout
 
 ```
-datecli/    Build environment: Go toolchain, source code, and the
-            [build.datecli] manifest build + publish configuration
-consumer/   Runtime environment: installs the published jbayer/datecli
-            package from FloxHub — no Go toolchain, no source code
+datecli/        Build environment: Go toolchain, source code, and the
+                [build.datecli] manifest build + publish configuration
+datecli-demo/   Runtime environment: installs the published jbayer/datecli
+                package from FloxHub — no Go toolchain, no source code
 ```
 
 Each directory is an independent Flox environment (`.flox/`), checked into
@@ -94,17 +94,33 @@ published package like any other catalog package. They never see the source
 code or the build toolchain:
 
 ```bash
-cd consumer
-flox install jbayer/datecli   # already in this repo's consumer manifest
+cd datecli-demo
+flox install jbayer/datecli   # already in this repo's datecli-demo manifest
 flox activate -- datecli
 # Current date and time: Tue, 09 Jun 2026 17:05:00 PDT
 ```
 
-The consumer environment's manifest is just:
+The consumer environment's manifest installs the published package plus
+[gum](https://github.com/charmbracelet/gum), which a `[profile]` script uses
+to print usage instructions whenever the environment is activated
+interactively:
 
 ```toml
 [install]
 datecli.pkg-path = "jbayer/datecli"
+gum.pkg-path = "gum"
+
+[profile]
+common = '''
+  gum style \
+    --border rounded --border-foreground 212 \
+    --margin "1 2" --padding "1 3" --align left \
+    "datecli demo environment" \
+    "" \
+    "Run 'datecli' to print the current date and time." \
+    "" \
+    "Learn more: https://github.com/jbayer/flox-package-demo"
+'''
 
 [options]
 # Limited to the systems the package has been published for so far.
@@ -120,17 +136,17 @@ The consumer environment itself can be pushed to FloxHub so others can use
 it without cloning this repo:
 
 ```bash
-cd consumer
+cd datecli-demo
 flox push
 ```
 
 This uploads the environment *definition* (the manifest and lock, not
-binaries) under the name in `.flox/env.json` — here `jbayer/datecli` — and
-links the local copy to it. Note that the environment `jbayer/datecli` and
-the package `jbayer/datecli` are separate resources: the environment is a
-manifest that happens to install the package. After pushing, commit the
-updated `.flox/env.json` and `.flox/env.lock`, which pin the environment to
-a specific FloxHub generation.
+binaries) under the name in `.flox/env.json` — here `jbayer/datecli-demo`.
+The name is deliberately different from the package: environments and
+packages are separate resources on FloxHub, and `jbayer/datecli-demo` is a
+manifest that happens to install the `jbayer/datecli` package. After
+pushing, commit the updated `.flox/env.json` and `.flox/env.lock`, which pin
+the environment to a specific FloxHub generation.
 
 ### Use the environment with nothing but Flox installed
 
@@ -139,14 +155,14 @@ On any machine that has Flox but no checkout of this repo and no local
 passing its FloxHub path (`<owner>/<name>`) to `-r`:
 
 ```bash
-flox activate -r jbayer/datecli -- datecli
+flox activate -r jbayer/datecli-demo -- datecli
 # Current date and time: Tue, 09 Jun 2026 17:57:24 PDT
 ```
 
-Or enter it as an interactive shell:
+Or enter it as an interactive shell, which also prints the gum usage banner:
 
 ```bash
-flox activate -r jbayer/datecli
+flox activate -r jbayer/datecli-demo
 ```
 
 Flox fetches the environment definition from FloxHub and realizes its
@@ -220,7 +236,7 @@ runners of different architectures (e.g. `ubuntu-latest`, `ubuntu-24.04-arm`,
 and `macos-latest`) publishes the additional platform variants of the same
 package version — the manifest needs no changes. If you want the consumer
 environment to work on `x86_64-linux` too, add it to `options.systems` in
-[consumer/.flox/env/manifest.toml](consumer/.flox/env/manifest.toml) after
+[datecli-demo/.flox/env/manifest.toml](datecli-demo/.flox/env/manifest.toml) after
 the CI publish succeeds.
 
 ## Notes
