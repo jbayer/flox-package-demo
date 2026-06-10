@@ -91,7 +91,12 @@ to FloxHub. Packages published to an org are private to its members.
 
 A consumer — another team, a CI job, a production image — installs the
 published package like any other catalog package. They never see the source
-code or the build toolchain:
+code or the build toolchain.
+
+Packages published to an org are private to that org, so in addition to
+having Flox installed, the consuming machine must be authenticated
+(`flox auth login`) as a user who is a member of the org the package was
+published to — here, `jbayer` — in order to download it:
 
 ```bash
 cd datecli-demo
@@ -150,9 +155,10 @@ the environment to a specific FloxHub generation.
 
 ### Use the environment with nothing but Flox installed
 
-On any machine that has Flox but no checkout of this repo and no local
-`.flox` directory, activate the environment straight from FloxHub by
-passing its FloxHub path (`<owner>/<name>`) to `-r`:
+On any machine that has Flox installed and is authenticated as a member of
+the org the package was published to, activate the environment straight from
+FloxHub — no checkout of this repo, no local `.flox` directory — by passing
+its FloxHub path (`<owner>/<name>`) to `-r`:
 
 ```bash
 flox activate -r jbayer/datecli-demo -- datecli
