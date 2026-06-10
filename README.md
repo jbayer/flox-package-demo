@@ -171,6 +171,10 @@ Or enter it as an interactive shell, which also prints the gum usage banner:
 flox activate -r jbayer/datecli-demo
 ```
 
+Here it is on a fresh Linux machine with nothing but Flox installed:
+
+![Remote activation of jbayer/datecli-demo on a Linux machine, showing the gum usage banner and datecli output](datecli-demo/remote-activation.png)
+
 Flox fetches the environment definition from FloxHub and realizes its
 packages locally — no git clone required. This is the same mechanism a CI
 job or a teammate would use to get the exact toolchain without knowing
