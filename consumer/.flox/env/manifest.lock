@@ -2,9 +2,45 @@
   "lockfile-version": 1,
   "manifest": {
     "schema-version": "1.12.0",
+    "install": {
+      "datecli": {
+        "pkg-path": "jbayer/datecli",
+        "pkg-group": "datecli",
+        "systems": [
+          "aarch64-darwin"
+        ]
+      }
+    },
     "hook": {},
     "profile": {},
     "options": {}
   },
-  "packages": []
+  "packages": [
+    {
+      "attr_path": "datecli",
+      "derivation": "/nix/store/zc522ckvxvs6pi6qzl58wacsl71vlp0z-datecli-0.1.0.drv",
+      "description": "Example CLI that prints the current date and time",
+      "install_id": "datecli",
+      "locked_url": "ssh://git@github.com/jbayer/flox-package-demo.git?rev=f5a911a95ffc266a9438d375dca3e518b19de146",
+      "name": "datecli-0.1.0",
+      "pname": "datecli",
+      "rev": "f5a911a95ffc266a9438d375dca3e518b19de146",
+      "rev_count": 1,
+      "rev_date": "2026-06-10T00:07:23Z",
+      "scrape_date": "2026-06-10T00:13:23.976917Z",
+      "stabilities": [
+        "unstable"
+      ],
+      "version": "0.1.0",
+      "outputs_to_install": [
+        "out"
+      ],
+      "outputs": {
+        "out": "/nix/store/7mbpz8v50w7hm7is1qxyzmh4iviyz24d-datecli-0.1.0"
+      },
+      "system": "aarch64-darwin",
+      "group": "datecli",
+      "priority": 5
+    }
+  ]
 }
