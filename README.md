@@ -116,17 +116,72 @@ Version constraints work the same as catalog packages, e.g.
 
 ## 4. Publishing from CI
 
-[.github/workflows/publish.yml](.github/workflows/publish.yml) publishes on
-every `v*` tag (or manual dispatch) using the official Flox GitHub Action.
-It needs one repository secret:
+[.github/workflows/publish.yml](.github/workflows/publish.yml) publishes
+using the official Flox GitHub Action. It runs on either of two triggers:
 
-- `FLOX_FLOXHUB_TOKEN` — a FloxHub auth token, read by the `flox` CLI
-  directly from the environment.
+- **Manual dispatch** — easiest way to test
+- **Pushing a tag that starts with `v`** (e.g. `v0.1.0`)
+
+Note that the tag is only a trigger: the published package version always
+comes from `version` in the `[build.datecli]` section of the manifest, not
+from the tag name.
+
+### Step-by-step: testing the workflow
+
+1. **Get a FloxHub token.** On a machine where you are logged in
+   (`flox auth status` to check), print your token:
+
+   ```bash
+   flox auth token
+   ```
+
+   This is your personal auth token and it expires after a few weeks, so
+   refresh the secret if CI publishing starts failing with auth errors.
+
+2. **Set it as a repository secret** named `FLOX_FLOXHUB_TOKEN` — the `flox`
+   CLI reads this environment variable directly, no `flox auth login` step
+   needed in CI:
+
+   ```bash
+   gh secret set FLOX_FLOXHUB_TOKEN --body "$(flox auth token)"
+   ```
+
+   (Or via the GitHub UI: Settings → Secrets and variables → Actions.)
+
+3. **Trigger the workflow.** Either run it manually:
+
+   ```bash
+   gh workflow run publish.yml
+   ```
+
+   or push a version tag:
+
+   ```bash
+   git tag v0.1.0
+   git push origin v0.1.0
+   ```
+
+4. **Watch the run:**
+
+   ```bash
+   gh run watch
+   ```
+
+5. **Verify the result.** The `ubuntu-latest` runner is `x86_64-linux`, so a
+   successful run adds that platform variant to the existing package version:
+
+   ```bash
+   flox show jbayer/datecli
+   # Systems: aarch64-darwin, aarch64-linux, x86_64-linux
+   ```
 
 Because `flox build` targets the host platform, running the same workflow on
-runners of different architectures (e.g. `ubuntu-latest` and `macos-latest`)
-publishes the additional platform variants of the same package version — the
-manifest needs no changes.
+runners of different architectures (e.g. `ubuntu-latest`, `ubuntu-24.04-arm`,
+and `macos-latest`) publishes the additional platform variants of the same
+package version — the manifest needs no changes. If you want the consumer
+environment to work on `x86_64-linux` too, add it to `options.systems` in
+[consumer/.flox/env/manifest.toml](consumer/.flox/env/manifest.toml) after
+the CI publish succeeds.
 
 ## Notes
 
